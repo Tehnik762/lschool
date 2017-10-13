@@ -41,3 +41,12 @@ echo "Задание №4" . PHP_EOL;
 
 echo task4(5, 15);
 echo task4(5.5, 15);
+
+
+// Task 02-05
+echo "Задание №5" . PHP_EOL;
+
+$x = task5("Улыбок тебе дед Макар");
+echo checkTask5($x).PHP_EOL;
+$x = task5("Я не стар брат Сеня");
+echo checkTask5($x);

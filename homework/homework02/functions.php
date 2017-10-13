@@ -91,3 +91,23 @@ function task4($first, $second)
         return "Введены некорректные исходные данные";
     }
 }
+
+function task5($phrase) 
+{
+    $phrase = mb_strtolower($phrase, "UTF-8");
+    $phrase = str_replace(" ", "", $phrase);
+    $len = strlen($phrase)-1;
+    for ($len; $len>=0; $len--) {
+       $new .= mb_substr($phrase, $len, 1);
+}
+    if ($phrase === $new) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+        
+}
+
+function checkTask5($bool) {
+    return $bool?"Да, это палиндром":"Нет, это не палиндром";
+}
