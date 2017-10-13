@@ -7,9 +7,7 @@
  *  
  */
 
-// Task #02-01
-
-function makeP($arr, $str = NULL)
+function task1($arr, $str = NULL)
 {
 
     foreach ($arr as $key => $part) {
@@ -26,10 +24,70 @@ function makeP($arr, $str = NULL)
         return $out_str;
     }
 }
-$example = ["asd", "qwe", "qaz"];
 
-makeP($example);
+function task2($arr, $znak)
+{
+    $result = array_shift($arr);
+    switch ($znak) {
+        case "+":
+            foreach ($arr as $value) {
+                $result += $value;
+            }
+            break;
 
-$x = makeP($example, TRUE);
+        case "-":
+            foreach ($arr as $value) {
+                $result -= $value;
+            }
+            break;
 
-echo $x;
+        case "*":
+
+            foreach ($arr as $value) {
+
+                $result *= $value;
+            }
+            break;
+
+        case "/":
+            foreach ($arr as $value) {
+                $result /= $value;
+            }
+            break;
+
+
+        default:
+            $result = "Некорректный ввод";
+            break;
+    }
+
+    return $result;
+}
+
+function task3()
+{
+    $arr = func_get_args();
+    $action = array_shift($arr);
+    $result = task2($arr, $action);
+    return $result;
+}
+
+function task4($first, $second)
+{
+    if (is_int($first) & is_int($second)) {
+        $result = "<table>";
+        for ($i = 1; $i <= $first; $i++) {
+            $result .= "<tr>";
+            for ($j = 1; $j <= $second; $j++) {
+                $x = $j * $i;
+                $result .= "<td> " . $i . " * " . $j . " = " . $x . " </td>";
+            }
+            $result .= "</tr>";
+        }
+        $result .= "</table>";
+
+        return $result;
+    } else {
+        return "Введены некорректные исходные данные";
+    }
+}
