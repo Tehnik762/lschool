@@ -15,7 +15,7 @@ function task1($arr, $str = NULL)
     }
     if (!$str) {
         foreach ($res as $out) {
-            echo $out . PHP_EOL;
+            echo $out . "<br/>";
         }
     } else {
         foreach ($res as $out) {

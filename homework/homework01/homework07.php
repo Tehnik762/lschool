@@ -19,8 +19,10 @@ for ($i = 1; $i < 11; $i++) {
         $r = $i*$j;
         if ($i%2 == 0 & $j%2 == 0) {
             echo "(".$r.")";
-        } else {
+        } elseif ($i%2 != 0 & $j%2 != 0) {
             echo "[".$r."]";
+        } else {
+            echo $r;
         }
         
         echo "</td>";

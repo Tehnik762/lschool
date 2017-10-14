@@ -11,10 +11,10 @@
 
 $name = "Антон";
 $age = '35';
-echo "Задание №1" . PHP_EOL;
-echo "Меня зовут: " . $name . PHP_EOL;
-echo 'Мне ' . $age . ' лет' . PHP_EOL;
-echo '“!|\\/’”\\', PHP_EOL;
+echo "Задание №1" . "<br/>";
+echo "Меня зовут: " . $name . "<br/>";
+echo 'Мне ' . $age . ' лет' . "<br/>";
+echo '“!|\\/’”\\', "<br/>";
 
 
 

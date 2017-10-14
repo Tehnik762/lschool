@@ -25,9 +25,9 @@ $opel = [
 $cars = ["BMV" => $bmv, "Toyota" => $toyota, "Opel" => $opel];
 
 foreach ($cars as $name => $car) {
-    echo "Car " . $name . PHP_EOL;
+    echo "Car " . $name . "<br/>";
     foreach ($car as $params) {
         echo $params . " ";
     }
-    echo PHP_EOL;
+    echo "<br/>";
 }

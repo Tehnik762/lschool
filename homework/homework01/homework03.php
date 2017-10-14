@@ -12,10 +12,10 @@
 define('THEANSWER', 42);
 
 if (defined('THEANSWER')) {
-    echo "Константа существует".PHP_EOL;
+    echo "Константа существует"."<br/>";
 }
 
-echo THEANSWER.PHP_EOL;
+echo THEANSWER."<br/>";
 
 define('THEANSWER', 1);
 

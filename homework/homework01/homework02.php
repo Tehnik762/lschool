@@ -14,5 +14,5 @@ $marker_images = 23;
 $pencil_images = 40;
 
 $oil_images = $all_images - $marker_images - $pencil_images;
-echo "Задание №2" . PHP_EOL;
-echo "Красками нарисовано " . $oil_images . " картин." . PHP_EOL;
+echo "Задание №2" . "<br/>";
+echo "Красками нарисовано " . $oil_images . " картин." . "<br/>";
