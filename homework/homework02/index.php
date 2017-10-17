@@ -50,3 +50,26 @@ $x = task5("Улыбок тебе дед Макар");
 echo checkTask5($x)."<br/>";
 $x = task5("Я не стар брат Сеня");
 echo checkTask5($x);
+
+
+// Task 02-06
+echo "Задание №6" . "<br/>";
+task6();
+
+
+// Task 02-07
+
+echo "Задание №7" . "<br/>";
+task7();
+
+
+// Task 02-08
+echo "Задание №8" . "<br/>";
+echo task8("RX packets:950381 errors:0 dropped:0 overruns:0 frame:0. ");
+echo "<br/>";
+echo task8("RX packets:950381 errors:0 :) dropped:0 overruns:0 frame:0. ");
+
+// Task 02-09
+
+
+
