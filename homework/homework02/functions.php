@@ -84,66 +84,69 @@ function task4($first, $second)
             }
             $result .= "</tr>";
         }
-        $result .= "</table>";
+        $result .= "</table><br/>";
 
         return $result;
     } else {
-        return "Введены некорректные исходные данные";
+        return "Введены некорректные исходные данные<br/>";
     }
 }
 
-function task5($phrase) 
+function task5($phrase)
 {
     $phrase = mb_strtolower($phrase, "UTF-8");
     $phrase = str_replace(" ", "", $phrase);
-    $len = strlen($phrase)-1;
-    for ($len; $len>=0; $len--) {
-       $new .= mb_substr($phrase, $len, 1);
-}
+    $len = strlen($phrase) - 1;
+    for ($len; $len >= 0; $len--) {
+        $new .= mb_substr($phrase, $len, 1);
+    }
     if ($phrase === $new) {
         return TRUE;
     } else {
         return FALSE;
     }
-        
 }
 
-function checkTask5($bool) {
-    return $bool?"Да, это палиндром":"Нет, это не палиндром";
+function checkTask5($bool)
+{
+    return $bool ? "Да, это палиндром<br/>" : "Нет, это не палиндром<br/>";
 }
 
-function task6() {
-	$now = date("d.m.Y H:i");
-	echo $now."</br>";
-	$unix = strtotime("24.02.2016 00:00:00");
-	echo $unix."</br>";
-	
+function task6()
+{
+    $now = date("d.m.Y H:i");
+    echo $now . "</br>";
+    $unix = strtotime("24.02.2016 00:00:00");
+    echo $unix . "</br>";
 }
 
-function task7() {
-	$str1 = "Карл у Клары украл Кораллы";
-	$str2 = "Две бутылки лимонада";
-	
-	$str1 = str_replace("К", "", $str1);
-	$str2 = str_replace("Две", "Три", $str2);
-	echo $str1."<br/>".$str2;
+function task7()
+{
+    $str1 = "Карл у Клары украл Кораллы";
+    $str2 = "Две бутылки лимонада";
+
+    $str1 = str_replace("К", "", $str1);
+    $str2 = str_replace("Две", "Три", $str2);
+    echo $str1 . "<br/>" . $str2 . "<br/>";
 }
 
-function task8($log) {
-	$pattern = "(?<=RX packets:)\d+";
-	preg_match($pattern, $log, $match);
-	$smile = ":)";
-	if (preg_match($smile, $log)) {
-		return smile();
-	}
-	
-	if ($match[0] > 1000) {
-		return "Сеть есть<br/>";
-	}
+function task8($log)
+{
+    $pattern = "/(?<=RX packets:)\d+/";
+    preg_match($pattern, $log, $match);
+    $smile = "/\:\)/";
+    if (preg_match($smile, $log)) {
+        return smile();
+    }
+
+    if ($match[0] > 1000) {
+        return "Сеть есть<br/>";
+    }
 }
 
-function smile() {
-	return "<p>.<br />
+function smile()
+{
+    return "<p>.<br />
 ████████████████████████████████████████<br />
 ███████████████▀▀▀▀▀▀▀▀▀▀███████████████<br />
 ███████████▀░░░░░░░░░░░░░░░▀▀███████████<br />

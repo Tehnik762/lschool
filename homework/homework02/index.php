@@ -47,7 +47,7 @@ echo task4(5.5, 15);
 echo "Задание №5" . "<br/>";
 
 $x = task5("Улыбок тебе дед Макар");
-echo checkTask5($x)."<br/>";
+echo checkTask5($x) . "<br/>";
 $x = task5("Я не стар брат Сеня");
 echo checkTask5($x);
 
