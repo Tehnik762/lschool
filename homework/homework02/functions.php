@@ -168,3 +168,14 @@ function smile()
 ████████████████▄▄▄▄▄▄▄▄████████████████<br />
 ████████████████████████████████████████</p>";
 }
+
+function task9($name)
+{
+    $f = file_get_contents($name);
+    return $f;
+}
+
+function task10()
+{
+    file_put_contents("anothertest.txt", "Hello again!");
+}

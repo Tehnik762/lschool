@@ -70,6 +70,10 @@ echo "<br/>";
 echo task8("RX packets:950381 errors:0 :) dropped:0 overruns:0 frame:0. ");
 
 // Task 02-09
+echo "Задание №9" . "<br/>";
+echo task9("test.txt") . "<br/>";
 
 
-
+// Task 02-10
+echo "Задание №10" . "<br/>";
+task10();
