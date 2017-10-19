@@ -10,15 +10,13 @@
 function task1($arr, $str = NULL)
 {
 
-    foreach ($arr as $key => $part) {
-        $res[$key] = "<p>" . $part . "</p>";
-    }
+
     if (!$str) {
-        foreach ($res as $out) {
-            echo $out . "<br/>";
+        foreach ($arr as $out) {
+            echo "<p>" . $out . "</p>";
         }
     } else {
-        foreach ($res as $out) {
+        foreach ($arr as $out) {
             $out_str .= $out;
         }
         return $out_str;
@@ -27,41 +25,55 @@ function task1($arr, $str = NULL)
 
 function task2($arr, $znak)
 {
-    $result = array_shift($arr);
-    switch ($znak) {
-        case "+":
-            foreach ($arr as $value) {
-                $result += $value;
+    if (is_array($arr)) {
+        $result = array_shift($arr);
+        foreach ($arr as $k) {
+            if (!is_numeric($k)) {
+                return "Некорректный ввод - один из элементов массива не является<br/>";
             }
-            break;
+        }
+        switch ($znak) {
+            case "+":
+                foreach ($arr as $value) {
+                    $result += $value;
+                }
+                break;
 
-        case "-":
-            foreach ($arr as $value) {
-                $result -= $value;
-            }
-            break;
+            case "-":
+                foreach ($arr as $value) {
+                    $result -= $value;
+                }
+                break;
 
-        case "*":
+            case "*":
 
-            foreach ($arr as $value) {
+                foreach ($arr as $value) {
 
-                $result *= $value;
-            }
-            break;
+                    $result *= $value;
+                }
+                break;
 
-        case "/":
-            foreach ($arr as $value) {
-                $result /= $value;
-            }
-            break;
+            case "/":
+                foreach ($arr as $value) {
+                    if ($value == 0) {
+                        return "Некорректный ввод - один из элементов массива является нулем<br/>";
+                    } else {
+                        $result /= $value;
+                    }
+                }
+
+                break;
 
 
-        default:
-            $result = "Некорректный ввод";
-            break;
+            default:
+                $result = "Некорректный ввод арифметического знака<br/>";
+                break;
+        }
+
+        return $result;
+    } else {
+        return "Некорректный ввод - не массив<br/>";
     }
-
-    return $result;
 }
 
 function task3()

@@ -22,12 +22,21 @@ echo $x . "<br/>";
 // Task 02-02
 echo "Задание №2" . "<br/>";
 $arr = [30, 20, 10];
+$arr2 = [30, 0, 10];
+$arr3 = [30, "asd", 10];
+
+
 
 echo task2($arr, "+") . "<br/>";
 echo task2($arr, "-") . "<br/>";
 echo task2($arr, "*") . "<br/>";
 echo task2($arr, "/") . "<br/>";
 echo task2($arr, "111") . "<br/>";
+echo task2($arr2, "/") . "<br/>";
+echo task2($arr3, "+") . "<br/>";
+echo task2("20 20 20", "+") . "<br/>";
+
+
 
 // Task 02-03
 echo "Задание №3" . "<br/>";
