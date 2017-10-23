@@ -50,7 +50,7 @@ function task2($a)
     $res = json_encode($a);
     file_put_contents("output.json", $res);
     $lucky = rand(1, 2);
-    echo $lucky;
+//    echo $lucky;
     if ($lucky == 1) {
         copy("output.json", "output2.json");
     } else {
@@ -58,7 +58,43 @@ function task2($a)
         $new = json_encode($new);
         file_put_contents("output2.json", $new);
     }
+	$f1 = file_get_contents("output.json");
+	$f2 = file_get_contents("output2.json");
+
+	if ($f1 == $f2) {
+		return "<br/>Файлы идентичны<br/>";
+	} else {
+		$f1 = json_decode($f1);
+		$f2 = json_decode($f2);
+		return task2_compare($f1, $f2);
+	}
     
+}
+
+function task2_compare($a1, $a2) {
+	$res .= "<br/><ul>";
+	foreach ($a1 as $key=>$value) {
+		if (is_array($value)) {
+			if ($a1[$key] != $a2[$key]) {
+				$res .= "<ul> Массив в элементе ".$key;
+				$res .= task2_compare($a1[$key], $a2[$key]);
+				$res .= "</ul>";
+			} 			
+		} else {
+			if ($a1[$key] != $a2[$key]) {
+				$res .= "<li>Элемент ".$key." отличается - 1: ".$a1[$key].
+				.",	2: ".$a2[$key]."</li>";
+			}
+			
+			
+		}
+	}
+	$res .= "</ul>";
+	
+	return $res;
+	}
+	
+	
 }
 
 function task2_changer($arr)
@@ -78,3 +114,24 @@ function task2_changer($arr)
     }
     return $res;
 }    
+
+function task3() {
+	$f = fopen("file.csv", "w");
+	
+	for ($i=0; $i < 50; $i++) {
+		$mass = rand(1, 100)."\r\n";
+		fwrite($f, $mass);
+	}
+	
+	fclose($f);
+	
+	$table= file("file.csv");
+	foreach ($table as $key=> $value) {
+		if ($key%2 != 0) {
+			$sum += $value;
+		}
+	}
+	return $sum;
+	
+	
+}
