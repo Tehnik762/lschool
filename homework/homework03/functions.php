@@ -44,3 +44,37 @@ function task1($file)
 //print_r($x);
     return $res;
 }
+
+function task2($a)
+{
+    $res = json_encode($a);
+    file_put_contents("output.json", $res);
+    $lucky = rand(1, 2);
+    echo $lucky;
+    if ($lucky == 1) {
+        copy("output.json", "output2.json");
+    } else {
+        $new = task2_changer($a);
+        $new = json_encode($new);
+        file_put_contents("output2.json", $new);
+    }
+    
+}
+
+function task2_changer($arr)
+{
+    foreach ($arr as $key => $value) {
+        if (is_array($value)) {
+            $res[$key] = task2_changer($value);
+        } else {
+            $lucky = rand(1, 2);
+            if ($lucky == 1) {
+                $res[$key] = $value;
+            } else {
+                $res[$key] = rand(0, 42000);
+            }
+        }
+        
+    }
+    return $res;
+}    
