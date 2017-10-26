@@ -123,7 +123,7 @@ function task3()
 
     $table = file("file.csv");
     $sum = 0;
-    foreach ($table as $key => $value) {
+    foreach ($table as $value) {
         if ($value % 2 == 0) {
             $sum += $value;
         }
