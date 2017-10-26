@@ -122,8 +122,9 @@ function task3()
     fclose($f);
 
     $table = file("file.csv");
+    $sum = 0;
     foreach ($table as $key => $value) {
-        if ($key % 2 != 0) {
+        if ($value % 2 == 0) {
             $sum += $value;
         }
     }
