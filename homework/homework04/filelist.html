@@ -1,3 +1,7 @@
+<?
+require_once 'app.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,32 +44,26 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Авторизация</a></li>
-            <li><a href="reg.html">Регистрация</a></li>
-            <li><a href="list.html">Список пользователей</a></li>
-            <li><a href="filelist.html">Список файлов</a></li>
+              <?php Menu::renderMenu(); ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
+        <?php
+            
+            if ($auth) { ?> 
     <h1>Запретная зона, доступ только авторизированному пользователю</h1>
       <h2>Информация выводится из списка файлов</h2>
-      <table class="table table-bordered">
-        <tr>
-          <th>Название файла</th>
-          <th>Фотография</th>
-          <th>Действия</th>
-        </tr>
-        <tr>
-          <td>1.jpg</td>
-          <td><img src="http://lorempixel.com/people/200/200/" alt=""></td>
-          <td>
-            <a href="">Удалить аватарку пользователя</a>
-          </td>
-        </tr>
-      </table>
+      
+         <? require_once 'includes/file_list.php';
+      } else {?>
+      
+<h2>Необходимо вначале авторизоваться</h2>
+
+<? } ?>
+      
 
     </div><!-- /.container -->
 
