@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 08 2017 г., 16:36
+-- Время создания: Ноя 14 2017 г., 16:47
 -- Версия сервера: 5.5.53-log
 -- Версия PHP: 7.0.14
 
@@ -34,7 +34,7 @@ CREATE TABLE `users` (
   `name` text COLLATE utf8_bin NOT NULL,
   `age` text COLLATE utf8_bin NOT NULL,
   `description` text COLLATE utf8_bin NOT NULL,
-  `photo` varchar(100) COLLATE utf8_bin NOT NULL
+  `photo` varchar(100) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -48,7 +48,8 @@ INSERT INTO `users` (`id`, `login`, `password`, `name`, `age`, `description`, `p
 (13, 'howie', '$2y$10$RL6eMn.HRBhVgDaARmMrq.ciH08xtj6KkXo5NIAlmTV8KQ89k5xvS', 'Саймон Хелберг', '345157200', 'Саймон Хелберг родился в Лос-Анджелесе в семье актёра Сэнди Хелберга. Саймон воспитывался в иудаизме, по его словам, «консервативно-реформистского толка, но с течением времени всё более реформистского»[1]\r\n\r\nХелберг в 2002 году играет в восьмом сезоне скетч-шоу на канале MADtv. Его присутствие на MADtv ограничилось только одним сезоном, в конце которого его контракт не был продлен.\r\n\r\nХелберг появляется в 2002 году в фильме «Король вечеринок» как один из ботанов, для которых Ван Вайлдер устраивает вечеринку.', '/photos/13.jpg'),
 (14, 'emy', '$2y$10$xO/af9H7fMDPVGayrrt9sehywmg7bSTlROwFgpdbRYDjwCkxFVCqa', 'Маим Бялик', '187563600', 'американская актриса, наиболее известная по ролям Блоссом Руссо в ситкоме «Блоссом» (1990—1995) и Эми Фары Фаулер в «Теории Большого взрыва» (с 2010)[1]. Четырёхкратная номинантка на «Эмми» за лучшую женскую роль второго плана в комедийном телесериале.\r\n\r\nТакже с 2008 года является PhD по нейробиологии (её диссертация была посвящена синдрому Прадера-Вилли).', '/photos/14.jpg'),
 (15, 'bernie', '$2y$10$8d2PBbbgTNog0aB1H/mM9eyrJ92SyORaHOf/.02WaaKMilGMrTjdO', 'Мелисса Айви Рауш', '330555600', 'актриса, комедиантка, сценарист, продюсер и режиссёр. Известна по роли Доктора Бернадетт Ростенковски-Воловиц в ситкоме «Теория большого взрыва» (2009—).', '/photos/15.jpg'),
-(16, 'radzh', '$2y$10$tcuT6Z7rfCug5kUZOX5SW.UfvUxvu2gvProdSEgV9ixIVSCB8SRQu', 'Кунал Найяр', '357422400', 'британский актёр индийского происхождения, наиболее известен как исполнитель роли Раджеша Кутраппали в телевизионном сериале «Теория большого взрыва».', '/photos/16.jpg');
+(16, 'radzh', '$2y$10$tcuT6Z7rfCug5kUZOX5SW.UfvUxvu2gvProdSEgV9ixIVSCB8SRQu', 'Кунал Найяр', '357422400', 'британский актёр индийского происхождения, наиболее известен как исполнитель роли Раджеша Кутраппали в телевизионном сериале «Теория большого взрыва».', '/photos/16.jpg'),
+(17, 'bev', '$2y$10$7Va0DLxyrxfPg7rG0iIcw.h9oORu9ul6VgsvroIhDOhL14kdeylK6', 'Беверли Хофстедтер', '-557550000', 'американская актриса театра, кино и телевидения, лауреат двух премий «Тони», трёх премий «Гильдии киноактёров США», «Эмми» и номинант на два «Золотых глобуса»', '/photos/17.jpg');
 
 --
 -- Индексы сохранённых таблиц
@@ -68,7 +69,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

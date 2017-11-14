@@ -16,6 +16,8 @@ if (password_verify($secret, $_COOKIE['DELETE'])) {
     $set[] = $id;
     $sql = "DELETE FROM users WHERE id=?";
     $res = $db->querySql($sql, $set, FALSE, TRUE);
+    $path = $_SERVER['DOCUMENT_ROOT'] . "/homework/homework04/photos/" . $id . ".jpg";
+    $temp = unlink(realpath($path));
     header("location: ../list.html");
 
 }

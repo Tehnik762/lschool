@@ -88,7 +88,25 @@ class User
     {
         $w = 400;
         $h = 250;
-        if ($file['type'] == "image/gif" OR $file['type'] == "image/jpeg" OR $file['type'] == "image/jpg") {
+        switch ($file['type']) {
+            case "image/gif":
+                $image = 1;
+                break;
+            case "image/jpeg":
+            case "image/jpg":
+                $image = 2;
+                break;
+            case "image/png":
+                $image = 3;
+                break;
+
+            default :
+
+                break;
+        }
+
+        if (isset($image)) {
+
             list($width, $height) = getimagesize($file['tmp_name']);
             $ratio_orig = $width / $height;
 
@@ -98,8 +116,12 @@ class User
                 $h = $w / $ratio_orig;
             }
             $image_p = imagecreatetruecolor($w, $h);
-            $image = imagecreatefromjpeg($file['tmp_name']);
+
+            $image = $this->makeImage($image, $file['tmp_name']);
             imagecopyresampled($image_p, $image, 0, 0, 0, 0, $w, $h, $width, $height);
+
+
+
             $path = $_SERVER['DOCUMENT_ROOT'] . "/homework/homework04/photos/" . $id . ".jpg";
             if (imagejpeg($image_p, $path)) {
                 return "/photos/" . $id . ".jpg";
@@ -107,6 +129,26 @@ class User
             } else {
                 return FALSE;
             }
+
+
+   
+        }
+    }
+
+    private function makeImage($p, $name)
+    {
+        switch ($p) {
+            case "1":
+                return imagecreatefromgif($name);
+
+                break;
+            case "2":
+                return imagecreatefromjpeg($name);
+
+                break;
+            case "3":
+                return imagecreatefrompng($name);
+                break;
         }
     }
 }
@@ -128,7 +170,7 @@ class render
     public static function string($str)
     {
     $res = "<tr>";
-    foreach($str  as $value) {
+    foreach($str as  $value) {
     $res .= "<td>{$value}</td>";
     }
     $res .= "</tr>";
@@ -137,6 +179,8 @@ class render
     public static function tableEnd()
 
 
+
+    
 
     {
     return "</table>";
