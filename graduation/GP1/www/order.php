@@ -6,8 +6,12 @@
  *     Email: yastroitel@gmail.com
  *  
  */
-
+require_once 'vendor/autoload.php';
 require_once 'config.inc';
+
+use PHPMailer\PHPMailer\PHPMailer;
+
+
 
 // check Recaptcha
 
@@ -50,6 +54,8 @@ $r = new recap($fields);
 
 if ($r->check()) {
 
+    
+    if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     $pdo = new PDO($dsn, $user, $pass, $opt);
 
     $stmt = $pdo->prepare('SELECT name, id FROM users WHERE email = ?');
@@ -118,8 +124,57 @@ DarkBeefBurger за 500 рублей, 1 шт
 
     $filename = time() . ".txt";
     file_put_contents("mail/" . $filename, $template);
+    
+    $mailbody = '<h2>Дорогой друг!</h2>
+<p>Только что, некто по имени - <strong>'.$_POST['name'].'</strong> заказал восхитетельный бургер!</p>
+<p>Его нужно доставить по адресу - '. $adres . '</p>
+<blockquote>
+	<p align="center"><b>Поторопись-ка! Клиент не собирается долго ждать!</b></p>
+	<p align="center"><b><img alt="Парис Хилтон" height="449" src="http://ic.pics.livejournal.com/malinina_sasha/73968006/1517426/1517426_800.jpg" width="800"></b></p>
+</blockquote>
+<p align="right">Твой бургерный лендинг!</p>
+';
+    
+    $mail = new PHPMailer(true);                           
+try {
+    //Server settings
+    $mail->SMTPDebug = 0;                                 
+    $mail->isSMTP();                                      
+    $mail->Host = 'smtp.yandex.ru';  
+    $mail->SMTPAuth = true;                               
+    $mail->Username = 'awesome.student';                 
+    $mail->Password = 'cjhjrlbrb[j,tpmzy';                
+    $mail->SMTPSecure = 'ssl';                           
+    $mail->Port = 465;
+    $mail->CharSet = "UTF-8";
+
+    //Recipients
+    $mail->setFrom('awesome.student@yandex.ru', 'Лофтскульный');
+    $mail->addAddress('yastroitel@gmail.com', 'Антон');     
+    $mail->addReplyTo('awesome.student@yandex.ru', 'Лофтскульный');
+
+    //Content
+    $mail->isHTML(true);                                  
+    $mail->Subject = 'Дзынь! Заказан бургер';
+    $mail->Body    = $mailbody;
+    $mail->AltBody = 'Это письмо для HTML';
+
+    $mail->send();
     echo $thanks;
+} catch (Exception $e) {
+    echo 'Мы не смогли отправить письмо. Звоните по телефону!';
+
+}
+    
+     
+    
+    
 } else {
+    echo "Вы ввели некорректный адрес электронной почты";
+}
+    }
+
+else {
 
     echo "Извините, вы не прошли проверку на робота!";
 }
