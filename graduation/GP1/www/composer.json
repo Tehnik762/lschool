@@ -1,6 +1,8 @@
 {
     "require": {
         "phpmailer/phpmailer": "^6.0",
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0",
+        "illuminate/database": "^5.5",
+        "smetdenis/jbdump": "^1.5"
     }
 }
