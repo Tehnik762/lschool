@@ -30,8 +30,29 @@ $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
 
-class User extends Illuminate\Database\Eloquent\Model {}
+class User extends Illuminate\Database\Eloquent\Model {
+    public $timestamps = false;
+       
+    public function orders()
+    {
+        return $this->hasMany('Order');
+    }
+}
 
-$users = User::where('email', "john@doe.com")->first()->toArray();
+class Order extends Illuminate\Database\Eloquent\Model {
+        public $timestamps = false;
+        
+            public function user()
+    {
+        return $this->belongsTo('User');
+    }
+        
+        
+        
+}
 
-jbdump($users);
+$user = Order::where('user_id', 5)
+    ->count();
+
+
+jbdump($GLOBALS);

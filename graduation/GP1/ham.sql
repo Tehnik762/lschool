@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 30 2017 г., 18:04
+-- Время создания: Ноя 28 2017 г., 09:53
 -- Версия сервера: 5.5.53-log
 -- Версия PHP: 7.0.14
 
@@ -38,11 +38,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `varinfo`) VALUES
-(1, 5, '{\"street\":\"1\",\"home\":\"\",\"part\":\"\",\"appt\":\"\",\"floor\":\"\",\"comment\":\"\",\"callback\":\"true\",\"payment\":\"true\",\"payment_card\":\"false\"}'),
-(2, 5, '{\"street\":\"1\",\"home\":\"\",\"part\":\"\",\"appt\":\"\",\"floor\":\"\",\"comment\":\"\",\"callback\":\"true\",\"payment\":\"true\",\"payment_card\":\"false\"}'),
-(3, 5, '{\"street\":\"1\",\"home\":\"\",\"part\":\"\",\"appt\":\"\",\"floor\":\"\",\"comment\":\"\",\"callback\":\"true\",\"payment\":\"true\",\"payment_card\":\"false\"}'),
-(4, 5, '{\"street\":\"1\",\"home\":\"\",\"part\":\"\",\"appt\":\"\",\"floor\":\"\",\"comment\":\"\",\"callback\":\"true\",\"payment\":\"true\",\"payment_card\":\"false\"}'),
-(5, 6, '{\"street\":\"1\",\"home\":\"\",\"part\":\"\",\"appt\":\"\",\"floor\":\"\",\"comment\":\"\",\"callback\":\"true\",\"payment\":\"true\",\"payment_card\":\"true\"}');
+(34, 18, '{\"street\":\"Somewhere\",\"home\":\"7\",\"part\":\"7\",\"appt\":\"7\",\"floor\":\"7\",\"comment\":\"Never gonna give you up\",\"callback\":\"on\",\"payment\":null,\"payment_card\":null}');
 
 -- --------------------------------------------------------
 
@@ -55,20 +51,17 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `name` text,
-  `phone` text
+  `phone` text,
+  `ip` text NOT NULL,
+  `avatar` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `name`, `phone`) VALUES
-(1, 'john@doe.com', 'John Doe', '555 222 333'),
-(2, 'elsa@doe.com', 'Elsa Doe', '555 2221 333'),
-(3, 'yastroitel@gmail.com', 'Браславский. Антон', ''),
-(4, 'test@test.ru', 'Василий', '+7 (111) 111 11 11'),
-(5, 'ignat@yahoo.ru', 'Игнат', '+7 (111) 111 11 11'),
-(6, 'polina@yahoo.ru', 'ПОлина', '+7 (111) 111 11 11');
+INSERT INTO `users` (`id`, `email`, `name`, `phone`, `ip`, `avatar`) VALUES
+(18, 'rick@roll.eu', 'Rick Roll', '+7 (555) 555 55 55', '127.0.0.1', 'http://lschool.loc/graduation/GP1/www/img/avatar/1511851951.jpg');
 
 --
 -- Индексы сохранённых таблиц
@@ -95,12 +88,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

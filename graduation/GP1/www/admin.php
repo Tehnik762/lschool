@@ -6,10 +6,12 @@
  *     Email: yastroitel@gmail.com
  *  
  */
-
+require_once 'vendor/autoload.php';
 require_once 'config.inc';
 
-$pdo = new PDO($dsn, $user, $pass, $opt);
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+require_once 'classes.php';
 
 function makeTable($array)
 {
@@ -21,42 +23,52 @@ function makeTable($array)
     return $res;
 }
 
-function makeString($array)
+function makeString($array, $av = FALSE)
 {
     $res = "<tr>";
-    foreach ($array as $value) {
+    foreach ($array as $key => $value) {
+        if ($key=="avatar" AND !empty($value) AND $av) {
+            $res .= "<td><img src='" . $value . "'/></td>";
+        } else {
         $res .= "<td>" . $value . "</td>";
+        }
     }
     $res .= "</tr>";
     return $res;
 }
 echo "<h3>Список пользователей системы</h3>";
 
-$head = ["ID", "Имя", "Email"];
+
+
+$head = ["ID", "Email", "Имя", "Телефон", "IP", "Аватар"];
 echo makeTable($head);
 
-$sql = "SELECT id, name, email FROM users WHERE 1";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
+$users = User::all();
 
-while ($row = $stmt->fetch()) {
-
-    echo makeString($row);
+foreach ($users as $user) {
+    echo makeString($user->toArray(), TRUE);
 }
+
+
 
 echo "</table>";
 
 echo "<h3>Список заказов системы</h3>";
 
-$head = ["ID заказа", "Имя клиента"];
+echo "<div style='padding:10px; margin:10px;'><a href='edit.php?action=create' style='padding:5px; border:1px dotted red;background-color:black; color: white; border-radius:2px;'>Добавить новый</a></div>";
+
+$head = ["ID заказа", "Имя клиента", "Редактировать"];
 echo makeTable($head);
-$sql = "SELECT orders.id, users.name FROM orders LEFT JOIN users ON orders.user_id=users.id WHERE 1";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
 
-while ($row = $stmt->fetch()) {
 
-    echo makeString($row);
+$orders = Order::select('orders.id', 'users.name')
+        ->leftJoin('users', 'orders.user_id', '=', 'users.id')->get()->toArray();
+
+
+
+foreach ($orders as $order) {
+    $order[] = '<a href="edit.php?action=edit&id=' . $order['id'] . '"/>Отредактировать</a>';
+    echo makeString($order);
 }
 
 echo "</table>";

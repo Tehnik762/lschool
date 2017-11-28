@@ -365,7 +365,7 @@
                     <div class="container">
                         <div class="section__title">Закажите доставку</div>
                         <div class="order__form">
-                            <form class="order__form-tag" id="order-form">
+                            <form class="order__form-tag" id="order-form"  enctype="multipart/form-data" name="order">
                                 <div class="order__form-col">
                                     <div class="order__form-row order__form-row_double">
                                         <label class="order__form-block">
@@ -411,6 +411,10 @@
                                         <label class="order__form-block">
                                             <div class="order__form-label">Комментарий</div>
                                             <textarea class="order__form-input order__form-input_textarea" name="comment"></textarea>
+                                        </label>
+                                        <label class="order__form-block">
+                                            <div class="order__form-label">Добавить свое фото</div>
+                                        <input name="avatar" type="file"/>
                                         </label>
                                     </div>
                                     <div class="order__form-buttons">
