@@ -8,7 +8,6 @@
  */
 
 require_once 'vendor/autoload.php';
-require_once 'config.inc';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
