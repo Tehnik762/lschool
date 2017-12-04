@@ -8,11 +8,6 @@
 */
 namespace MVC;
 
-class Main extends Controller{
-    
-    public function index() {
-        $menu = Model::Menu();
-        $this->render("menu", $menu);
-    }
+class User extends Model {
     
 }

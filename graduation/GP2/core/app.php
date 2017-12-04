@@ -7,7 +7,7 @@
  *  
  */
 namespace MVC;
-
+require_once 'config.php';
 require_once 'core/Model.php';
 require_once 'core/Controller.php';
 require_once 'core/View.php';
@@ -25,8 +25,9 @@ class MVC
         } else {
             $c = 'Main';
         }
-        if (!empty($url[1])) {
-            $m = $url[1];
+        $method = $this->getGET($url[1]);
+        if (!empty($method[0])) {
+            $m = $method[0];
         } else {
             $m = 'index';
         }
@@ -38,7 +39,11 @@ class MVC
             $controller = new $c();
             
             if (method_exists($controller, $m)) {
-                $controller->$m();
+                if (!empty($method[1])) {
+                $controller->$m($method[1]);}
+                else {
+                $controller->$m();                    
+                }
             } else {
                 View::render404();
                 jbdump($url);
@@ -48,4 +53,21 @@ class MVC
             jbdump($url);
         }
     }
-}
+
+    private function getGET($data) {
+        $data = explode("?", $data);
+        $res[] = $data[0];
+        $params = explode("&", $data[1]);
+        foreach ($params as $p) {
+            $pre = explode("=", $p);
+            $attr[$pre[0]]=$pre[1];
+            
+        }
+        $res[] = $attr;
+        return $res;
+    }
+    
+    
+    
+    
+        }

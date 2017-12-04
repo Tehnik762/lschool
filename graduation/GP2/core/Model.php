@@ -15,12 +15,23 @@ $capsule = new Capsule;
 $capsule->addConnection([
     'driver' => 'mysql',
     'host' => 'localhost',
-    'database' => 'mvc',
-    'username' => 'mvc',
-    'password' => '123123',
+    'database' => $db,
+    'username' => $user,
+    'password' => $password,
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',
 ]);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
+
+
+class Model extends \Illuminate\Database\Eloquent\Model {
+    public static function Menu() {
+                $menu =[
+            "Список пользователей" => "users/all"
+        ];
+        return $menu;
+        
+    }
+}

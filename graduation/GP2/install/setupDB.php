@@ -33,9 +33,11 @@ $capsule->bootEloquent();
 
 // Creating
 
-Capsule::schema()->create('cats', function ($table) {
+Capsule::schema()->create('users', function ($table) {
     $table->increments('id');
     $table->string('name');
+    $table->integer('birth');
+    $table->string('image');
     $table->text('description');
     $table->timestamps();
 });
