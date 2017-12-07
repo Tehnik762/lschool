@@ -16,7 +16,7 @@ class MVC
 {
 
     public function __construct()
-    {   
+    {       
         if ($this->checkAuth()) {
         $url = $_GET['url'];
         $url = rtrim($url, '/');
@@ -78,7 +78,17 @@ class MVC
         if (isset($_SESSION['auth']) AND !empty($_SESSION['auth'])) {
             return TRUE;
         } else {
-            
+            if (isset($_POST['letmein'])){
+                switch ($_POST['letmein']) {
+                    case 'login':
+                        $_SERVER['REQUEST_URI']; ///graduation/GP2/users/login
+
+                        break;
+
+                    default:
+                        break;
+                }
+            }
             return FALSE;
         }
     }

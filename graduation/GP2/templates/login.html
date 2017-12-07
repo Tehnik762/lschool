@@ -27,9 +27,10 @@
                     <form action="users/login" method="POST">
                         <fieldset>
                          <label for="login">Логин</label>
-                         <input type="text" placeholder="Введите ваш логин" id="login">
+                         <input type="text" placeholder="Введите ваш логин" id="login" name="login">
                          <label for="password">Пароль</label>
-                         <input type="password" id="password"> 
+                         <input type="password" id="password" name="password"> 
+                         <input type="hidden" value="login" name="letmein"> 
                          <input class="button-primary" type="submit" value="Войти">
                         </fieldset>
                     </form>
