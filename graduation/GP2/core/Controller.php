@@ -9,7 +9,10 @@
 namespace MVC;
 
 class Controller {
-    public function render($name, $param) {
-        require 'views/'.$name.'.php';
+    public $view, $data, $mainuser;
+    public function __construct()
+    {
+        $this->view = new View();
+        
     }
 }

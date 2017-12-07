@@ -16,7 +16,8 @@ class MVC
 {
 
     public function __construct()
-    {
+    {   
+        if ($this->checkAuth()) {
         $url = $_GET['url'];
         $url = rtrim($url, '/');
         $url = explode('/', $url);
@@ -52,6 +53,11 @@ class MVC
             View::render404();
             jbdump($url);
         }
+        }
+        else {
+            $v = new View();
+            $v->render(array(), 'login.html');
+        }
     }
 
     private function getGET($data) {
@@ -67,7 +73,15 @@ class MVC
         return $res;
     }
     
-    
+    private function checkAuth() 
+    {
+        if (isset($_SESSION['auth']) AND !empty($_SESSION['auth'])) {
+            return TRUE;
+        } else {
+            
+            return FALSE;
+        }
+    }
     
     
         }

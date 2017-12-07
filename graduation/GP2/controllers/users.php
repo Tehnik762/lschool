@@ -16,6 +16,7 @@ class Users extends Controller {
 
         require_once 'models/user.php';
         $users = new User();
+        $this->view->render($this->data);
     }
 
 }

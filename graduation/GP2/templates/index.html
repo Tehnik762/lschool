@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>
+            {% if title is defined %}
+            {{ title }}
+            {% else %}
+            MVC project
+            {% endif %}
+        </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+        <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+        <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    </head>
+    <body>
+        
+     <div class="container">
+<div class="row">
+      <div class="column column-100">
+          <h1>Model View Controller</h1>
+      </div>
+</div>
+  <div class="row">
+      <div class="column column-30">
+           {% if menu %}
+           <h3>Меню проекта</h3>
+   <ul>
+        {% for key, link in menu %}
+        <li><a href="{{ link }}">{{ key }}</a></li>
+        {% endfor %}
+    </ul>
+            {% endif %}
+          
+          
+          
+      </div>
+    <div class="column column-70">70%</div>
+  </div>
+
+  
+     </div>
+    </body>
+</html>
