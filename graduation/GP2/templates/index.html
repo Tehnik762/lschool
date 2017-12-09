@@ -22,7 +22,7 @@
       </div>
 </div>
   <div class="row">
-      <div class="column column-30">
+      <div class="column column-20">
            {% if menu %}
            <h3>Меню проекта</h3>
    <ul>
@@ -31,13 +31,40 @@
         {% endfor %}
     </ul>
             {% endif %}
-          
+            {% if name is defined %}
+            <p>
+                Здравствуйте, {{ name }}!
+            </p>
+            {% endif %}
+
+            <p>
+                <a href="users/quit" class="button">
+                    Выйти из системы
+                </a>
+            </p>
           
           
       </div>
-    <div class="column column-70">70%</div>
+    <div class="column column-80">
+    
+        {% for key, txt in content %}
+        <h3>{{ key }}</h3>
+        <div>
+            {{ txt|raw }}
+        </div>
+        {% endfor %}
+    
+    </div>
   </div>
+ {% if error is defined %}
+            <div class="row">
 
+                <blockquote>
+                    <p><strong>{{ error }}</strong></p>
+                </blockquote>
+
+            </div>
+            {% endif %}
   
      </div>
     </body>

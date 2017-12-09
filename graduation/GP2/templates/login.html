@@ -23,25 +23,62 @@
                 </div>
                 <div class="column column-30">
                     <h3>Авторизация</h3>
-                    
+
                     <form action="users/login" method="POST">
                         <fieldset>
-                         <label for="login">Логин</label>
-                         <input type="text" placeholder="Введите ваш логин" id="login" name="login">
-                         <label for="password">Пароль</label>
-                         <input type="password" id="password" name="password"> 
-                         <input type="hidden" value="login" name="letmein"> 
-                         <input class="button-primary" type="submit" value="Войти">
+                            <label for="login">Логин</label>
+                            <input type="text" placeholder="Введите ваш логин" id="login" name="login">
+                            <label for="password">Пароль</label>
+                            <input type="password" id="password" name="password"> 
+                            <input type="hidden" value="{{ hash }}" name="token"> 
+                            <input class="button-primary" type="submit" value="Войти">
                         </fieldset>
                     </form>
-                    
-                    
-                    
+
+
+
                 </div>
                 <div class="column column-50">
                     <h3>Регистрация</h3>
+                    <form action="users/register" method="POST" enctype="multipart/form-data">
+                        <fieldset>
+                            <label for="login">Логин</label>
+                            <input type="text" placeholder="Введите ваш логин" id="login" name="login">
+                            <div class="row">
+                                <div class="column column-50">
+                                    <label for="password">Пароль</label>
+                            <input type="password" id="password" name="password">
+                                </div>
+                                 <div class="column column-50">
+                                    <label for="password2">Повторите пароль</label>
+                            <input type="password" id="password2" name="password2"> 
+                                </div>
+                            </div>
+                            
+                               
+                             <label for="date">Введите дату вашего рождения</label>
+                             <input type="date" id="birth" name="birth" placeholder="ММ.ДД.ГГГГ">
+                             <label for="info">Пару слов о себе</label>
+                             <textarea id="info" name="info" rows="3"></textarea>
+                             <label for="photo" >Фотография</label>
+                              <input type="file" id="photo" name="photo">
+                             
+                            
+                            <input type="hidden" value="{{ hash }}" name="token"> 
+                            <input class="button-primary" type="submit" value="Зарегистрироваться">
+                        </fieldset>
+                    </form>
                 </div>
             </div>
+            {% if error is defined %}
+            <div class="row">
+
+                <blockquote>
+                    <p><strong>{{ error }}</strong></p>
+                </blockquote>
+
+            </div>
+            {% endif %}
 
     </body>
 </html>

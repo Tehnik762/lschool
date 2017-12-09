@@ -5,7 +5,7 @@
  *     Student: Braslavskii Anton
  *     Email: yastroitel@gmail.com
  *  
-*/
+ */
 namespace MVC;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -25,13 +25,17 @@ $capsule->addConnection([
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
+class Model extends \Illuminate\Database\Eloquent\Model
+{
 
-class Model extends \Illuminate\Database\Eloquent\Model {
-    public static function Menu() {
-                $menu =[
-            "Список пользователей" => "users/all"
+    public static function Menu()
+    {
+        $menu = [
+            "Список пользователей" => ROOT . "users/all",
+            "Новый пользователь" => ROOT . "users/newuser",
+            "Все файлы" => ROOT . "files/all",
+            "Добавить файл" => ROOT . "files/upload"
         ];
         return $menu;
-        
     }
 }

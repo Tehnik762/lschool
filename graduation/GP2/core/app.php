@@ -7,6 +7,7 @@
  *  
  */
 namespace MVC;
+
 require_once 'config.php';
 require_once 'core/Model.php';
 require_once 'core/Controller.php';
@@ -16,82 +17,86 @@ class MVC
 {
 
     public function __construct()
-    {       
+    {
         if ($this->checkAuth()) {
-        $url = $_GET['url'];
-        $url = rtrim($url, '/');
-        $url = explode('/', $url);
-        if (!empty($url[0])) {
-            $c = $url[0];
-        } else {
-            $c = 'Main';
-        }
-        $method = $this->getGET($url[1]);
-        if (!empty($method[0])) {
-            $m = $method[0];
-        } else {
-            $m = 'index';
-        }
+            // проверим доп параметры
+            $p = count($_GET);
+            if ($p > 1) {
+                $params = $this->getGET($_GET);
+            }
 
-        if (is_file('controllers/' . strtolower($c) . '.php')) {
-            require_once 'controllers/' . strtolower($c) . '.php';
-            
-            $c = "\\MVC\\".$c;
-            $controller = new $c();
-            
-            if (method_exists($controller, $m)) {
-                if (!empty($method[1])) {
-                $controller->$m($method[1]);}
-                else {
-                $controller->$m();                    
+            $url = $_GET['url'];
+
+            $url = rtrim($url, '/');
+            $url = explode('/', $url);
+            if (!empty($url[0])) {
+                $c = $url[0];
+            } else {
+                $c = 'Main';
+            }
+            $method = $url[1];
+            if (!empty($method)) {
+                $m = $method;
+            } else {
+                $m = 'index';
+            }
+
+            if (is_file('controllers/' . strtolower($c) . '.php')) {
+                require_once 'controllers/' . strtolower($c) . '.php';
+
+                $c = "\\MVC\\" . $c;
+                $controller = new $c();
+
+                if (method_exists($controller, $m)) {
+                    if (isset($params)) {
+                        $controller->$m($params);
+                    } else {
+                        $controller->$m();
+                    }
+                } else {
+                    View::render404();
                 }
             } else {
                 View::render404();
-                jbdump($url);
             }
         } else {
-            View::render404();
-            jbdump($url);
-        }
-        }
-        else {
             $v = new View();
-            $v->render(array(), 'login.html');
+            $token = time() . rand(0, 100);
+            $_SESSION['token'] = $token;
+            $data['hash'] = password_hash($token, PASSWORD_DEFAULT);
+            if ($_SESSION['errors']) {
+                $data['error'] = $_SESSION['errors'];
+                unset($_SESSION['errors']);
+            }
+            $v->render($data, 'login.html');
         }
     }
 
-    private function getGET($data) {
-        $data = explode("?", $data);
-        $res[] = $data[0];
-        $params = explode("&", $data[1]);
-        foreach ($params as $p) {
-            $pre = explode("=", $p);
-            $attr[$pre[0]]=$pre[1];
-            
+    private function getGET(array $data)
+    {
+        foreach ($data as $key => $value) {
+            if ($key != "url") {
+                $res[$key] = $value;
+            }
         }
-        $res[] = $attr;
+
         return $res;
     }
-    
-    private function checkAuth() 
+
+    private function checkAuth()
     {
-        if (isset($_SESSION['auth']) AND !empty($_SESSION['auth'])) {
+        if (isset($_SESSION['auth']) AND ! empty($_SESSION['auth'])) {
             return TRUE;
         } else {
-            if (isset($_POST['letmein'])){
-                switch ($_POST['letmein']) {
-                    case 'login':
-                        $_SERVER['REQUEST_URI']; ///graduation/GP2/users/login
-
-                        break;
-
-                    default:
-                        break;
+            if (isset($_POST['token'])) {
+                if (password_verify($_SESSION['token'], $_POST['token'])) {
+                    return TRUE;
+                } else {
+                    return FALSE;
                 }
+            } else {
+                return FALSE;
             }
-            return FALSE;
         }
     }
-    
-    
-        }
+}
