@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Testing API</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+        <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+        <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+        <link rel="stylesheet" href="custom.css">
+    </head>
+    <body>
+        <div class="container">
+
+  <div class="row control">
+    <div class="column"><span class="button" id="all">Получить все товары</span></div>
+    <div class="column"><span class="button" id="new">Добавить новый товар</span></div>
+    <div class="column">.column</div>
+    <div class="column">.column</div>
+  </div>
+        
+  <div class="row">
+      <div class="column adding">
+          <form id="newgood">
+  <fieldset>
+    <label for="name">Название товара</label>
+    <input type="text" placeholder="Грелка" id="name" name="name">
+    <label for="description">Описание</label>
+    <textarea placeholder="Грелка греет" id="description" name="description"></textarea>
+    <input type="hidden" value="1" name="cat_id"/>
+    <div class="float-right">
+      <span class="button" id="add">Добавить</span>
+    </div>
+    
+  </fieldset>
+</form>
+      </div>
+  </div>
+       
+
+  <div class="row">
+    <div class="column content"></div>
+  </div>
+   </div>   
+        <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="custom.js"></script>
+    </body>
+</html>

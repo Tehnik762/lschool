@@ -1,0 +1,7 @@
+{
+    "require": {
+        "illuminate/database": "^5.5",
+        "smetdenis/jbdump": "^1.5",
+        "fzaninotto/faker": "^1.7"
+    }
+}
